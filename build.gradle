@@ -1,0 +1,56 @@
+buildscript {
+	ext {
+		springBootVersion          = '2.6.11'
+		dependencyInjection        = '1.0.13.RELEASE'
+		openCSVversion             = '5.6'
+		commonsIOversion           = '2.11.0'
+		openapiVersion             = '1.6.6'
+		junitVersion               = '5.8.1'
+		junitPlatformSuite         = '1.8.1'
+		mockitoVersion             = '4.7.0'
+		assertjVersion             = '3.6.1'
+		hamcrestVersion            = '2.2'
+	}
+}
+plugins {
+	id 'org.springframework.boot' version "${springBootVersion}"
+	id 'io.spring.dependency-management' version "${dependencyInjection}"
+	id 'java'
+}
+
+group = 'com.xm.crypto'
+version = '0.0.1'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation "org.springframework.boot:spring-boot-starter-web"
+	implementation "com.opencsv:opencsv:${openCSVversion}"
+	implementation "commons-io:commons-io:${commonsIOversion}"
+	implementation "org.springdoc:springdoc-openapi-ui:${openapiVersion}"
+
+	compileOnly "org.projectlombok:lombok"
+	annotationProcessor "org.projectlombok:lombok"
+	testImplementation "org.springframework.boot:spring-boot-starter-test"
+
+	testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
+	testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+	testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
+	testImplementation "org.junit.platform:junit-platform-suite:${junitPlatformSuite}"
+	testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
+	testImplementation "org.assertj:assertj-core:${assertjVersion}"
+	testImplementation "org.hamcrest:hamcrest:${hamcrestVersion}"
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

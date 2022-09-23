@@ -1,0 +1,5 @@
+api:
+  response-codes:
+    ok.desc: OK
+    badRequest.desc: BAD_REQUEST
+    notFound.desc: NOT_FOUND

@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xm_recommendation_service
+spec:
+  selector:
+    matchLabels:
+      app: xm_recommendation_service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: xm_recommendation_service
+    spec:
+      containers:
+        - name: order
+          image: vitalii1992/xm_recommendation_service:latest
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: xm_recommendation_service
+
+spec:
+  ports:
+    - port: 8080
+      name: http
+      targetPort: 8080
+  selector:
+    app: xm_recommendation_service
+  type: NodePort
