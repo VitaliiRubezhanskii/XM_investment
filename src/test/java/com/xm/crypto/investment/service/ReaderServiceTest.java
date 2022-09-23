@@ -25,7 +25,7 @@ public class ReaderServiceTest {
     }
 
     @Test
-    public void calculateCharacteristicsOfPriceTest() {
+    public void readAsStreamOfCryptoPriceDataTest() {
         Stream<CryptoPriceData> actualCsvContent = readerService.readAsStreamOfCryptoPriceData(List.of("BTC", "DOGE"));
         assertEquals(expectedCsvContent(), actualCsvContent.collect(Collectors.toList()));
     }
